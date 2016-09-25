@@ -44,8 +44,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="functionApps\AnalysisToString.js" />
+    <Content Include="stq_\html\Happiness.html" />
     <Content Include="stq_\html\test.html" />
+    <Content Include="stq_\lib\react-dom.js" />
+    <Content Include="stq_\lib\react.js" />
+    <None Include="stq_\script\happinessvm.jsx" />
+    <None Include="stq_\script\test.jsx" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
