@@ -1,6 +1,7 @@
 ﻿using CRM.Lab.Model;
 using Microsoft.Xrm.Client;
 using Microsoft.Xrm.Client.Services;
+using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 using System;
 using System.Collections.Generic;
@@ -12,12 +13,11 @@ namespace CRM.Lab.Repository
 {
     public class ContactRepository
     {
-        private OrganizationService _service;
+        private IOrganizationService _service;
 
         public ContactRepository()
         {
-            var conn = new CrmConnection("crm");
-            _service = new OrganizationService(conn);
+            _service = new OrganizationServiceProvider.Provider().Service;
         }
 
         public Contact GetContactById(Guid id)

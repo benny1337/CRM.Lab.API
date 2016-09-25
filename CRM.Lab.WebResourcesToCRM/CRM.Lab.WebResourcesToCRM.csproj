@@ -150,6 +150,12 @@
   <ItemGroup>
     <Folder Include="bin\Debug\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CRM.Lab.OrganizationServiceProvider\CRM.Lab.OrganizationServiceProvider.csproj">
+      <Project>{a365b6ac-c9ab-404c-8457-d1748d7e38a9}</Project>
+      <Name>CRM.Lab.OrganizationServiceProvider</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

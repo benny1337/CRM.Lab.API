@@ -529,7 +529,22 @@ var objectdefinitions = (function () {
 
     return my;
 })();
-
+var scriptmodule = (function () {
+    var me = {
+        loadbabelscripts: function (scriptsarr, callback) {            
+            var count = 0;
+            console.log(count);
+            scriptsarr.forEach(function (script) {
+                common.loadScript(script, function (script) {                    
+                    count++;
+                    if (count == scriptsarr.length)
+                        callback(script);
+                },'text/babel');
+            });
+        }
+    };
+    return me;
+})();
 var common = (function () {
     var _xrm = null;
     var _islocalhost = false;
@@ -545,6 +560,7 @@ var common = (function () {
         email: emailModule,
         metadata: metadataModule,
         objectDefinitions: objectdefinitions,
+        scripts: scriptmodule,
         Xrm: {
             runLocalhost: function () {
                 Xrm = {
@@ -627,17 +643,17 @@ var common = (function () {
         my.loadScript(url, callback);
     }
 
-    my.loadScript = function (url, callback) {
-        url = my.Xrm.get().Page.context.getClientUrl() + "//WebResources/" + url;
+    my.loadScript = function (url, callback, type) {        
+        if(!common.Xrm.get().isLocalhost)
+            url = my.Xrm.get().Page.context.getClientUrl() + "//WebResources/" + url;
+
         var head = document.getElementsByTagName('head')[0];
         var script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = url;
+        script.type = type ? type : 'text/javascript';
+        script.src = url;        
+        script.onreadystatechange = callback(script);
+        script.onload = callback(script);
 
-        script.onreadystatechange = callback;
-        script.onload = callback;
-
-        head.appendChild(script);
     }
 
     return my;
