@@ -21354,16 +21354,31 @@
 	    }
 	    getToken() {
 	        return new Promise(function (resolve, reject) {
-	            setTimeout(function () {
-	                resolve("hej");
-	            }, 1000);
+	            window.config = {
+	                instance: "https://login.microsoftonline.com/",
+	                tenant: "hallojsan.onmicrosoft.com",
+	                clientId: "9e122abb-790c-4fc5-8c20-bbab6c73b7e9",
+	                postLogoutRedirectUri: window.location.hostname,
+	                endpoints: {
+	                    orgUri: "https://hallojsan.onmicrosoft.com/CRM.Lab.API"
+	                },
+	                cacheLocation: 'localStorage' // enable this for IE, as sessionStorage does not work for localhost.
+	            };
+	            common.adaljs.getToken(window.config, function (token) {
+	                setTimeout(function () {
+	                    resolve(token);
+	                }, 3000);
+	            }, function (error) {
+	                reject(error);
+	            });
 	        });
 	    }
-	    getImageAnalysis() {
+	    getImageAnalysis(token) {
 	        var self = this;
 	        return new Promise(function (resolve, reject) {
 	            var req = new XMLHttpRequest();
-	            req.open('GET', "http://crmlabapi.azurewebsites.net/api/ImageAnalyzer/" + self.props.contactid);
+	            req.open('GET', "https://crmlabapi.azurewebsites.net/api/ImageAnalyzer/" + self.props.contactid);
+	            req.setRequestHeader('Authorization', 'Bearer ' + token);
 	            req.onload = function () {
 	                if (req.status == 200) {
 	                    try {
@@ -21386,7 +21401,7 @@
 	    componentDidMount() {
 	        var self = this;
 	        self.getToken().then(function (token) {
-	            self.getImageAnalysis().then(function (analysis) {
+	            self.getImageAnalysis(token).then(function (analysis) {
 	                var data = analysis;
 	                self.setState({ analysis: data });
 	            }).catch(function (error) {
@@ -21400,7 +21415,6 @@
 	            }).then(function () {
 	                self.setState({ isLoading: false });
 	            });
-	            ;
 	        });
 	    }
 	    render() {

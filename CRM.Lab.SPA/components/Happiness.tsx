@@ -4,9 +4,11 @@ import * as React from "react";
 import { Spinner } from "./Spinner";
 import { Indicator } from "./Indicator";
 import { DisplayError } from "./DisplayError";
+declare var common: any;
+declare var window: any;
 
 export interface IHappinessProps {
-    contactid: string    
+    contactid: string,      
 }
 export interface IHappinessState {
     isLoading?: boolean,
@@ -23,20 +25,35 @@ export class Happiness extends React.Component<IHappinessProps, IHappinessState>
         };
     }
 
-    getToken() {
+    getToken() {        
         return new Promise(function (resolve, reject) {
-            setTimeout(function () {
-                resolve("hej");
-            }, 1000);            
+            window.config = {
+                instance: "https://login.microsoftonline.com/",
+                tenant: "hallojsan.onmicrosoft.com",
+                clientId: "9e122abb-790c-4fc5-8c20-bbab6c73b7e9",
+                postLogoutRedirectUri: window.location.hostname,
+                endpoints: {
+                    orgUri: "https://hallojsan.onmicrosoft.com/CRM.Lab.API"
+                },
+                cacheLocation: 'localStorage' // enable this for IE, as sessionStorage does not work for localhost.
+            };            
+            common.adaljs.getToken(window.config, function (token: string) {
+                setTimeout(function () {
+                    resolve(token);
+                }, 3000);
+            }, function (error: string) {
+                reject(error);
+            });
+      
         });        
     }
 
-    public getImageAnalysis() {        
+    public getImageAnalysis(token: string) {        
         var self = this;
         return new Promise(function (resolve, reject) {                      
             var req = new XMLHttpRequest();
-            req.open('GET', "http://crmlabapi.azurewebsites.net/api/ImageAnalyzer/" + self.props.contactid);
-
+            req.open('GET', "https://crmlabapi.azurewebsites.net/api/ImageAnalyzer/" + self.props.contactid);            
+            req.setRequestHeader('Authorization', 'Bearer ' + token);
             req.onload = function () {
                 if (req.status == 200) {
                     try {                        
@@ -59,8 +76,8 @@ export class Happiness extends React.Component<IHappinessProps, IHappinessState>
 
     componentDidMount() {
         var self = this;
-        self.getToken().then(function (token) {            
-            self.getImageAnalysis().then(function (analysis) {
+        self.getToken().then(function (token: string) {
+            self.getImageAnalysis(token).then(function (analysis) {
                 var data = analysis as IImageAnalysis;
                 self.setState({ analysis: data });
             }).catch(function (error) {
@@ -73,7 +90,7 @@ export class Happiness extends React.Component<IHappinessProps, IHappinessState>
                 });
             }).then(function () {
                 self.setState({ isLoading: false });
-            });;
+            });
         });
     }
     render() {        

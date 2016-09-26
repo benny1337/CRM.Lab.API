@@ -1,4 +1,6 @@
-﻿using Microsoft.Xrm.Sdk;
+﻿using Microsoft.Xrm.Client;
+using Microsoft.Xrm.Client.Services;
+using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 using System;
 using System.Collections.Generic;
@@ -18,12 +20,13 @@ namespace CRM.Lab.WebResourcesToCRM
 
     class Program
     {
-        private const string NAMEOFWEBRESOURCEDIR = "CRM.Lab.SPA.WebResources";
+        private const string NAMEOFWEBRESOURCEDIR = "CRM.Lab.SPA";
         private const string NAMEOFTHISPROJ = "CRM.Lab.WebResourcesToCRM";
 
         static void Main(string[] args)
         {
-            var service = new OrganizationServiceProvider.Provider().Service;
+            var conn = new CrmConnection("crm");
+            var service = new OrganizationService(conn);
             var existringresources = ReadResources(service);
 
             var basedir = Directory.GetCurrentDirectory().Split(new string[] { NAMEOFTHISPROJ }, StringSplitOptions.None);
@@ -46,7 +49,11 @@ namespace CRM.Lab.WebResourcesToCRM
                 }
                 else
                 {
-                    wr["webresourcetype"] = GetType(filename);
+                    var type = GetType(filename);
+                    if (type.Value == -1)
+                        continue;
+
+                    wr["webresourcetype"] = type;
                     service.Create(wr);
                 }
 

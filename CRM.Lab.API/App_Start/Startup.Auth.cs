@@ -18,8 +18,9 @@ namespace CRM.Lab.API
                 new WindowsAzureActiveDirectoryBearerAuthenticationOptions
                 {
                     Tenant = ConfigurationManager.AppSettings["ida:Tenant"],
-                    TokenValidationParameters = new TokenValidationParameters {
-                         ValidAudience = ConfigurationManager.AppSettings["ida:Audience"]
+                    TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidAudience = ConfigurationManager.AppSettings["ida:Audience"]
                     },
                 });
         }

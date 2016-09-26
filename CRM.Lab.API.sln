@@ -15,36 +15,65 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRM.Lab.Repository", "CRM.L
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRM.Lab.SPA", "CRM.Lab.SPA\CRM.Lab.SPA.csproj", "{3216964B-52EE-4F86-A801-7C86BA343850}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRM.Lab.WebResourcesToCRM", "CRM.Lab.WebResourcesToCRM\CRM.Lab.WebResourcesToCRM.csproj", "{A43A35FD-00A2-4280-9292-CC8E616BC623}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRM.Lab.OrganizationServiceProvider", "CRM.Lab.OrganizationServiceProvider\CRM.Lab.OrganizationServiceProvider.csproj", "{A365B6AC-C9AB-404C-8457-D1748D7E38A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		git|Any CPU = git|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{71ED1327-4253-4595-B394-2D9B2FD98C3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{71ED1327-4253-4595-B394-2D9B2FD98C3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71ED1327-4253-4595-B394-2D9B2FD98C3F}.git|Any CPU.ActiveCfg = git|Any CPU
+		{71ED1327-4253-4595-B394-2D9B2FD98C3F}.git|Any CPU.Build.0 = git|Any CPU
 		{71ED1327-4253-4595-B394-2D9B2FD98C3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71ED1327-4253-4595-B394-2D9B2FD98C3F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4BE3B3AE-1D6C-4F09-A7B6-730ADA304DD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4BE3B3AE-1D6C-4F09-A7B6-730ADA304DD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BE3B3AE-1D6C-4F09-A7B6-730ADA304DD3}.git|Any CPU.ActiveCfg = git|Any CPU
+		{4BE3B3AE-1D6C-4F09-A7B6-730ADA304DD3}.git|Any CPU.Build.0 = git|Any CPU
 		{4BE3B3AE-1D6C-4F09-A7B6-730ADA304DD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BE3B3AE-1D6C-4F09-A7B6-730ADA304DD3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E8A03219-F415-4F4C-864F-465E9A812932}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E8A03219-F415-4F4C-864F-465E9A812932}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8A03219-F415-4F4C-864F-465E9A812932}.git|Any CPU.ActiveCfg = git|Any CPU
+		{E8A03219-F415-4F4C-864F-465E9A812932}.git|Any CPU.Build.0 = git|Any CPU
 		{E8A03219-F415-4F4C-864F-465E9A812932}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8A03219-F415-4F4C-864F-465E9A812932}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9FF42574-4030-4F50-8524-A5606A0D2E9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9FF42574-4030-4F50-8524-A5606A0D2E9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FF42574-4030-4F50-8524-A5606A0D2E9C}.git|Any CPU.ActiveCfg = git|Any CPU
+		{9FF42574-4030-4F50-8524-A5606A0D2E9C}.git|Any CPU.Build.0 = git|Any CPU
 		{9FF42574-4030-4F50-8524-A5606A0D2E9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FF42574-4030-4F50-8524-A5606A0D2E9C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8BF70B94-8D0E-4579-B17A-1235EE99772E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8BF70B94-8D0E-4579-B17A-1235EE99772E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BF70B94-8D0E-4579-B17A-1235EE99772E}.git|Any CPU.ActiveCfg = git|Any CPU
+		{8BF70B94-8D0E-4579-B17A-1235EE99772E}.git|Any CPU.Build.0 = git|Any CPU
 		{8BF70B94-8D0E-4579-B17A-1235EE99772E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BF70B94-8D0E-4579-B17A-1235EE99772E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3216964B-52EE-4F86-A801-7C86BA343850}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3216964B-52EE-4F86-A801-7C86BA343850}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3216964B-52EE-4F86-A801-7C86BA343850}.git|Any CPU.ActiveCfg = Release|Any CPU
+		{3216964B-52EE-4F86-A801-7C86BA343850}.git|Any CPU.Build.0 = Release|Any CPU
 		{3216964B-52EE-4F86-A801-7C86BA343850}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3216964B-52EE-4F86-A801-7C86BA343850}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A43A35FD-00A2-4280-9292-CC8E616BC623}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A43A35FD-00A2-4280-9292-CC8E616BC623}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A43A35FD-00A2-4280-9292-CC8E616BC623}.git|Any CPU.ActiveCfg = git|Any CPU
+		{A43A35FD-00A2-4280-9292-CC8E616BC623}.git|Any CPU.Build.0 = git|Any CPU
+		{A43A35FD-00A2-4280-9292-CC8E616BC623}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A43A35FD-00A2-4280-9292-CC8E616BC623}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A365B6AC-C9AB-404C-8457-D1748D7E38A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A365B6AC-C9AB-404C-8457-D1748D7E38A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A365B6AC-C9AB-404C-8457-D1748D7E38A9}.git|Any CPU.ActiveCfg = Release|Any CPU
+		{A365B6AC-C9AB-404C-8457-D1748D7E38A9}.git|Any CPU.Build.0 = Release|Any CPU
+		{A365B6AC-C9AB-404C-8457-D1748D7E38A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A365B6AC-C9AB-404C-8457-D1748D7E38A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

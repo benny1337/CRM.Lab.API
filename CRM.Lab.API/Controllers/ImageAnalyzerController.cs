@@ -12,6 +12,7 @@ using CRM.Lab.Repository;
 
 namespace CRM.Lab.API.Controllers
 {
+    [Authorize]
     [EnableCors("*", "*", "*")]
     public class ImageAnalyzerController : ApiController
     {

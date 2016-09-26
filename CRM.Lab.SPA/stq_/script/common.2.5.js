@@ -545,6 +545,45 @@ var scriptmodule = (function () {
     };
     return me;
 })();
+var adal = (function () {
+    return {
+        getToken: function (config, success, error) {            
+            var authContext = new AuthenticationContext(config);
+            var user = authContext.getCachedUser();
+            var isCallback = authContext.isCallback(window.location.hash);
+            if (!user && !isCallback) {
+                authContext.login();
+            }
+
+            if (isCallback) {
+                authContext.handleWindowCallback();
+            }
+            var loginError = authContext.getLoginError();
+
+            if (isCallback) {
+                window.location = authContext._getItem(authContext.CONSTANTS.STORAGE.LOGIN_REQUEST);
+            }
+
+            if (isCallback && !authContext.getLoginError()) {
+                window.location = authContext._getItem(authContext.CONSTANTS.STORAGE.LOGIN_REQUEST);
+            }
+
+            if (loginError) {
+                var message = "ADAL error START -----> " + "Err: " + loginError + "<-----ADAL error END" + "User: " + authContext.getCachedUser();
+                if(error)
+                    error(message);
+                return;
+            }
+
+            authContext.acquireToken(config.endpoints.orgUri, function (e, token) {                
+                if (e == null)
+                    success(token);
+                else
+                    error(e);
+            });
+        }
+    }
+})();
 var common = (function () {
     var _xrm = null;
     var _islocalhost = false;
@@ -561,6 +600,7 @@ var common = (function () {
         metadata: metadataModule,
         objectDefinitions: objectdefinitions,
         scripts: scriptmodule,
+        adaljs: adal,
         Xrm: {
             runLocalhost: function () {
                 Xrm = {

@@ -10,6 +10,9 @@ namespace CRM.Lab.API.Controllers
 {
     //[Authorize]
     //[EnableCors("*", "*", "*")]
+    [Authorize]
+    //[Authorize]
+    //[EnableCors("*", "*", "*")]
     public class ValuesController : ApiController
     {
         // GET api/values
