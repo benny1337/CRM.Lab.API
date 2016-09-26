@@ -45,12 +45,16 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(34);
-	var well_1 = __webpack_require__(172);
-	ReactDOM.render(React.createElement("div", null, 
-	    React.createElement(well_1.Well, {text: "jan persson"})
-	), document.getElementById("content"));
+	const React = __webpack_require__(1);
+	const ReactDOM = __webpack_require__(34);
+	const Happiness_1 = __webpack_require__(172);
+	ReactDOM.render(React.createElement(Happiness_1.Happiness, {contactid: getid()}), document.getElementById("content"));
+	function getid() {
+	    var id = "{63A0E5B9-88DF-E311-B8E5-6C3BE5A8B200}";
+	    if (!common.Xrm.get().isLocalhost)
+	        id = common.getCurrentId();
+	    return id;
+	}
 
 
 /***/ },
@@ -21334,26 +21338,146 @@
 /* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/// <reference path="../interfaces/interfaces.d.ts" />
 	"use strict";
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
-	var React = __webpack_require__(1);
-	var Well = (function (_super) {
-	    __extends(Well, _super);
-	    function Well() {
-	        _super.apply(this, arguments);
+	const React = __webpack_require__(1);
+	const Spinner_1 = __webpack_require__(173);
+	const Indicator_1 = __webpack_require__(174);
+	const DisplayError_1 = __webpack_require__(175);
+	class Happiness extends React.Component {
+	    constructor(props) {
+	        super(props);
+	        this.state = {
+	            isLoading: true,
+	            analysis: null
+	        };
 	    }
-	    Well.prototype.render = function () {
-	        return React.createElement("div", {className: "well"}, this.props.text);
-	    };
-	    return Well;
-	}(React.Component));
-	exports.Well = Well;
+	    getToken() {
+	        return new Promise(function (resolve, reject) {
+	            setTimeout(function () {
+	                resolve("hej");
+	            }, 1000);
+	        });
+	    }
+	    getImageAnalysis() {
+	        var self = this;
+	        return new Promise(function (resolve, reject) {
+	            var req = new XMLHttpRequest();
+	            req.open('GET', "http://crmlabapi.azurewebsites.net/api/ImageAnalyzer/" + self.props.contactid);
+	            req.onload = function () {
+	                if (req.status == 200) {
+	                    try {
+	                        resolve(JSON.parse(req.response));
+	                    }
+	                    catch (e) {
+	                        reject(e);
+	                    }
+	                }
+	                else {
+	                    reject(req.statusText);
+	                }
+	            };
+	            req.onerror = function () {
+	                reject("Network Error");
+	            };
+	            req.send();
+	        });
+	    }
+	    componentDidMount() {
+	        var self = this;
+	        self.getToken().then(function (token) {
+	            self.getImageAnalysis().then(function (analysis) {
+	                var data = analysis;
+	                self.setState({ analysis: data });
+	            }).catch(function (error) {
+	                var e = {
+	                    Message: error,
+	                    Severity: 1
+	                };
+	                self.setState({
+	                    error: e
+	                });
+	            }).then(function () {
+	                self.setState({ isLoading: false });
+	            });
+	            ;
+	        });
+	    }
+	    render() {
+	        return (React.createElement("div", null, 
+	            React.createElement(Spinner_1.Spinner, {isLoading: this.state.isLoading}), 
+	            React.createElement(DisplayError_1.DisplayError, {error: this.state.error}), 
+	            React.createElement(Indicator_1.Indicator, {Analysis: this.state.analysis})));
+	    }
+	}
+	exports.Happiness = Happiness;
+
+
+/***/ },
+/* 173 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	const React = __webpack_require__(1);
+	class Spinner extends React.Component {
+	    constructor(props) {
+	        super(props);
+	    }
+	    render() {
+	        if (this.props.isLoading)
+	            return (React.createElement("div", {className: "spinner"}, 
+	                React.createElement("img", {src: "../img/ripple.gif"})
+	            ));
+	        else
+	            return null;
+	    }
+	}
+	exports.Spinner = Spinner;
+
+
+/***/ },
+/* 174 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	/// <reference path="../interfaces/interfaces.d.ts" />
+	const React = __webpack_require__(1);
+	class Indicator extends React.Component {
+	    constructor(props) {
+	        super(props);
+	    }
+	    render() {
+	        if (this.props.Analysis == null)
+	            return null;
+	        return React.createElement("span", null, this.props.Analysis.IsHappy ? "The contact is happy" : "The contact is not happy");
+	    }
+	}
+	exports.Indicator = Indicator;
+
+
+/***/ },
+/* 175 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	/// <reference path="../interfaces/interfaces.d.ts" />
+	const React = __webpack_require__(1);
+	class DisplayError extends React.Component {
+	    constructor(props) {
+	        super(props);
+	    }
+	    render() {
+	        if (this.props.error) {
+	            var style = this.props.error.Severity == 1 ? "fatal-error" : "error";
+	            return (React.createElement("div", {className: style}, this.props.error.Message));
+	        }
+	        else
+	            return null;
+	    }
+	}
+	exports.DisplayError = DisplayError;
 
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=bundle.js.map
+//# sourceMappingURL=happinessindicator.js.map

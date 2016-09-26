@@ -1,0 +1,18 @@
+﻿body {
+    font-family:Tahoma;
+}
+.spinner{
+    width: 50px;
+}
+.fatal-error{
+    border: 5px solid #620000;
+    background-color: #d94f4f;
+    color:#620000;
+    padding: 20px;
+}
+.error{
+    border: 5px solid #9b820d;
+    background-color: #d0c359;
+    color:#9b820d;
+    padding: 20px;
+}

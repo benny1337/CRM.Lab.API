@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/es6-promise": "0.0.32",
     "react": "^15.3.2",
     "react-dom": "^15.3.2"
   },

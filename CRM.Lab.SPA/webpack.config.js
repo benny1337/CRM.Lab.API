@@ -1,7 +1,7 @@
 ﻿module.exports = {
-    entry: "./Scripts/src/index.tsx",
+    entry: "./applications/happinessindicator.tsx",
     output: {
-        filename: "./stq_/script/bundle.js",
+        filename: "./stq_/script/happinessindicator.js",
     },
 
     // Enable sourcemaps for debugging webpack's output.

@@ -212,14 +212,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="stq_\html\HtmlPage1.html" />
+    <Content Include="stq_\css\style.css" />
+    <Content Include="stq_\html\happinessindicator.html" />
+    <Content Include="stq_\img\ripple.gif" />
     <Content Include="stq_\script\bundle.js" />
+    <Content Include="stq_\script\common.2.5.js" />
     <Content Include="tsconfig.json" />
     <Content Include="webpack.config.js" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Scripts\src\index.tsx" />
-    <TypeScriptCompile Include="Scripts\src\components\well.tsx" />
+    <TypeScriptCompile Include="applications\happinessindicator.tsx" />
+    <TypeScriptCompile Include="components\DisplayError.tsx" />
+    <TypeScriptCompile Include="components\Happiness.tsx" />
+    <TypeScriptCompile Include="components\Indicator.tsx" />
+    <TypeScriptCompile Include="components\Spinner.tsx" />
+    <TypeScriptCompile Include="interfaces\interfaces.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
