@@ -9,5 +9,6 @@ namespace CRM.Lab.Model
     public class Analysis
     {
         public bool IsHappy { get; set; }
+        public bool IsJeppe { get; set; }
     }
 }

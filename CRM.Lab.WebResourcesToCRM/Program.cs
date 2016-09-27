@@ -1,4 +1,5 @@
-﻿using Microsoft.Xrm.Client;
+﻿using Microsoft.Crm.Sdk.Messages;
+using Microsoft.Xrm.Client;
 using Microsoft.Xrm.Client.Services;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
@@ -56,8 +57,10 @@ namespace CRM.Lab.WebResourcesToCRM
                     wr["webresourcetype"] = type;
                     service.Create(wr);
                 }
-
             }
+
+            var req = new PublishAllXmlRequest();
+            service.Execute(req);
         }
 
         private static OptionSetValue GetType(string filename)

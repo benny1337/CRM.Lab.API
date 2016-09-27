@@ -15,6 +15,18 @@ export class Indicator extends React.Component<IHappiess, {}> {
         if (this.props.Analysis == null)
             return null;
 
-        return <span>{this.props.Analysis.IsHappy ? "The contact is happy" : "The contact is not happy"}</span>;
+        var css = "jeppe shake";
+        var jeppe = (<span />);
+
+        if (this.props.Analysis.IsJeppe) {
+            var jeppe = (<div><img src="../img/jeppe.jpg" className={css} /></div >);
+        }
+
+        return (
+            <div>
+                <span>{this.props.Analysis.IsHappy ? "The contact is happy" : "The contact is not happy"}</span>
+                {jeppe}
+            </div>
+        )
     }
 }

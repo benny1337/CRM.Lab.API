@@ -21365,9 +21365,7 @@
 	                cacheLocation: 'localStorage' // enable this for IE, as sessionStorage does not work for localhost.
 	            };
 	            common.adaljs.getToken(window.config, function (token) {
-	                setTimeout(function () {
-	                    resolve(token);
-	                }, 3000);
+	                resolve(token);
 	            }, function (error) {
 	                reject(error);
 	            });
@@ -21463,7 +21461,16 @@
 	    render() {
 	        if (this.props.Analysis == null)
 	            return null;
-	        return React.createElement("span", null, this.props.Analysis.IsHappy ? "The contact is happy" : "The contact is not happy");
+	        var css = "jeppe shake";
+	        var jeppe = (React.createElement("span", null));
+	        if (this.props.Analysis.IsJeppe) {
+	            var jeppe = (React.createElement("div", null, 
+	                React.createElement("img", {src: "../img/jeppe.jpg", className: css})
+	            ));
+	        }
+	        return (React.createElement("div", null, 
+	            React.createElement("span", null, this.props.Analysis.IsHappy ? "The contact is happy" : "The contact is not happy"), 
+	            jeppe));
 	    }
 	}
 	exports.Indicator = Indicator;

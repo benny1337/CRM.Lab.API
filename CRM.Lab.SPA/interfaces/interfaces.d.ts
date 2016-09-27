@@ -1,5 +1,6 @@
 ﻿interface IImageAnalysis {
     IsHappy: boolean,
+    IsJeppe: boolean
 }
 
 interface IError {

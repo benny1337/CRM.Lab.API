@@ -37,10 +37,8 @@ export class Happiness extends React.Component<IHappinessProps, IHappinessState>
                 },
                 cacheLocation: 'localStorage' // enable this for IE, as sessionStorage does not work for localhost.
             };            
-            common.adaljs.getToken(window.config, function (token: string) {
-                setTimeout(function () {
-                    resolve(token);
-                }, 3000);
+            common.adaljs.getToken(window.config, function (token: string) {                
+                    resolve(token);                
             }, function (error: string) {
                 reject(error);
             });

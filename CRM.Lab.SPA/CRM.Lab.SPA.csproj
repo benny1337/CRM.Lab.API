@@ -213,6 +213,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="stq_\html\HtmlPage1.html" />
+    <Content Include="stq_\img\jeppe.jpg" />
     <Content Include="stq_\lib\adal.js" />
     <Content Include="stq_\css\style.css" />
     <Content Include="stq_\html\happinessindicator.html" />
