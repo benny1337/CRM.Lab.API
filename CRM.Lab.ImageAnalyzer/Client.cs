@@ -29,7 +29,7 @@ namespace CRM.Lab.ImageAnalyzer
                                 
                 var emotion = await _client.RecognizeAsync(new MemoryStream(Convert.FromBase64String(base64)));
 
-                var jeppe = new Guid("{301af4e6-489c-4ce5-ad09-0a9d6c1c4730}");
+                var jeppe = new Guid("{9ae5860e-3e66-4f98-a548-72166f0200c6}");
                 var newimage = await _faceclient.DetectAsync(new MemoryStream(Convert.FromBase64String(base64)));
                 var isjeppe = false;
                 if (newimage.Count() > 0)
